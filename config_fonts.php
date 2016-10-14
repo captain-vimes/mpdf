@@ -274,8 +274,12 @@ $this->fontdata = array(
 	"unbatang" => array(/* Korean */
 		'R' => "UnBatang_0613.ttf",
 	),
-    	"antennaregular" => array(
+    "antennaregular" => array(
 		'R' => "AntennaRegular.ttf"
+	)
+	,
+    "pechkin" => array(
+		'R' => "Pechkin.ttf"
 	)
 );
 
