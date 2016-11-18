@@ -280,7 +280,10 @@ $this->fontdata = array(
 	,
     "pechkin" => array(
 		'R' => "Pechkin.ttf"
-	)
+	), 
+	"pragmatica" => array(
+        'R' => "Pragmatica.ttf"
+    )
 );
 
 
