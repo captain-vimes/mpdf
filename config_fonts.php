@@ -283,6 +283,9 @@ $this->fontdata = array(
 	), 
 	"pragmatica" => array(
         'R' => "Pragmatica.ttf"
+    ), 
+	"pragmaticalight" => array(
+        'R' => "PragmaticaLight.ttf"
     )
 );
 
