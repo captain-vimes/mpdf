@@ -286,7 +286,13 @@ $this->fontdata = array(
     ), 
 	"pragmaticalight" => array(
         'R' => "PragmaticaLight.ttf"
-    )
+    ), 
+	"arial" => array(
+		'R' => "Arial.ttf",
+		'B' => "ArialBold.ttf",
+		'I' => "ArialItalic.ttf",
+		'BI' => "ArialBoldItalic.ttf"
+	),
 );
 
 
