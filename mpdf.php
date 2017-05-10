@@ -30565,7 +30565,9 @@ class mPDF
                 // Strip the number from the $size for the calculation
                 $number = preg_replace("/[^0-9\.]/", "", $size);
                 //dumpr($number);
-                
+               
+		if (!is_numeric($number)) { $number = 0; }
+			   
 		if ($size == 'thin') {
 			$number = 1 * (25.4 / $this->dpi); //1 pixel width for table borders
                 } elseif (stristr($size, 'px')) {
