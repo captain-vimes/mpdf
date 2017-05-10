@@ -30559,95 +30559,100 @@ class mPDF
 		// Setting e.g. margin % will use maxsize (pagewidth) and em will use fontsize
 		// Returns values using 'mm' units
 		$size = trim(strtolower($size));
-
-		if ($size == 'thin')
-			$size = 1 * (25.4 / $this->dpi); //1 pixel width for table borders
-		elseif (stristr($size, 'px'))
-			$size *= (25.4 / $this->dpi); //pixels
-		elseif (stristr($size, 'cm'))
-			$size *= 10; //centimeters
-		elseif (stristr($size, 'mm'))
-			$size += 0; //millimeters
-		elseif (stristr($size, 'pt'))
-			$size *= 25.4 / 72; //72 pts/inch
-		elseif (stristr($size, 'rem')) {
-			$size += 0; //make "0.83rem" become simply "0.83"
-			$size *= ($this->default_font_size / _MPDFK);
+                //dumpr($size);
+                
+                // @CM 2016-12-11
+                // Strip the number from the $size for the calculation
+                $number = preg_replace("/[^0-9\.]/", "", $size);
+                //dumpr($number);
+                
+		if ($size == 'thin') {
+			$number = 1 * (25.4 / $this->dpi); //1 pixel width for table borders
+                } elseif (stristr($size, 'px')) {
+			$number *= (25.4 / $this->dpi); //pixels
+                } elseif (stristr($size, 'cm')) {
+			$number *= 10; //centimeters
+                } elseif (stristr($size, 'mm')) {
+			$number += 0; //millimeters
+                } elseif (stristr($size, 'pt')) {
+			$number *= 25.4 / 72; //72 pts/inch
+                } elseif (stristr($size, 'rem')) {
+			//$number += 0; //make "0.83rem" become simply "0.83"
+			$number *= ($this->default_font_size / _MPDFK);
 		} elseif (stristr($size, 'em')) {
-			$size += 0; //make "0.83em" become simply "0.83"
+			//$number += 0; //make "0.83em" become simply "0.83"
 			if ($fontsize) {
-				$size *= $fontsize;
+				$number *= $fontsize;
 			} else {
-				$size *= $maxsize;
+				$number *= $maxsize;
 			}
 		} elseif (stristr($size, '%')) {
-			$size += 0; //make "90%" become simply "90"
+			//$number += 0; //make "90%" become simply "90"
 			if ($fontsize && $usefontsize) {
-				$size *= $fontsize / 100;
+				$number *= $fontsize / 100;
 			} else {
-				$size *= $maxsize / 100;
+				$number *= $maxsize / 100;
 			}
-		} elseif (stristr($size, 'in'))
-			$size *= 25.4; //inches
-		elseif (stristr($size, 'pc'))
-			$size *= 38.1 / 9; //PostScript picas
-		elseif (stristr($size, 'ex')) { // Approximates "ex" as half of font height
-			$size += 0; //make "3.5ex" become simply "3.5"
+		} elseif (stristr($size, 'in')) {
+			$number *= 25.4; //inches
+                } elseif (stristr($size, 'pc')) {
+			$number *= 38.1 / 9; //PostScript picas
+                } elseif (stristr($size, 'ex')) { // Approximates "ex" as half of font height
+			//$number += 0; //make "3.5ex" become simply "3.5"
 			if ($fontsize) {
-				$size *= $fontsize / 2;
-			} else {
-				$size *= $maxsize / 2;
+				$number *= $maxsize / 2;
 			}
-		} elseif ($size == 'medium')
-			$size = 3 * (25.4 / $this->dpi); //3 pixel width for table borders
-		elseif ($size == 'thick')
-			$size = 5 * (25.4 / $this->dpi); //5 pixel width for table borders
-		elseif ($size == 'xx-small') {
+		} elseif ($size == 'medium') {
+			$number = 3 * (25.4 / $this->dpi); //3 pixel width for table borders
+                } elseif ($size == 'thick') {
+			$number = 5 * (25.4 / $this->dpi); //5 pixel width for table borders
+                } elseif ($size == 'xx-small') {
 			if ($fontsize) {
-				$size *= $fontsize * 0.7;
+				$number *= $fontsize * 0.7;
 			} else {
-				$size *= $maxsize * 0.7;
+				$number *= $maxsize * 0.7;
 			}
 		} elseif ($size == 'x-small') {
 			if ($fontsize) {
-				$size *= $fontsize * 0.77;
+				$number *= $fontsize * 0.77;
 			} else {
-				$size *= $maxsize * 0.77;
+				$number *= $maxsize * 0.77;
 			}
 		} elseif ($size == 'small') {
 			if ($fontsize) {
-				$size *= $fontsize * 0.86;
+				$number *= $fontsize * 0.86;
 			} else {
-				$size *= $maxsize * 0.86;
+				$number *= $maxsize * 0.86;
 			}
 		} elseif ($size == 'medium') {
 			if ($fontsize) {
-				$size *= $fontsize;
+				$number *= $fontsize;
 			} else {
-				$size *= $maxsize;
+				$number *= $maxsize;
 			}
 		} elseif ($size == 'large') {
 			if ($fontsize) {
-				$size *= $fontsize * 1.2;
+				$number *= $fontsize * 1.2;
 			} else {
-				$size *= $maxsize * 1.2;
+				$number *= $maxsize * 1.2;
 			}
 		} elseif ($size == 'x-large') {
 			if ($fontsize) {
-				$size *= $fontsize * 1.5;
+				$number *= $fontsize * 1.5;
 			} else {
-				$size *= $maxsize * 1.5;
+				$number *= $maxsize * 1.5;
 			}
 		} elseif ($size == 'xx-large') {
 			if ($fontsize) {
-				$size *= $fontsize * 2;
+				$number *= $fontsize * 2;
 			} else {
-				$size *= $maxsize * 2;
+				$number *= $maxsize * 2;
 			}
-		} else
-			$size *= (25.4 / $this->dpi); //nothing == px
+		} else {
+			$number *= (25.4 / $this->dpi); //nothing == px
+                }
 
-		return $size;
+		return $number;
 	}
 
 	// mPDF 5.7.3 TRANSFORMS
