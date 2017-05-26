@@ -1782,6 +1782,12 @@ class Tag
 				$container_w = $prevblk['inner_width'];
 				$bdr = $currblk['border_right']['w'];
 				$bdl = $currblk['border_left']['w'];
+				if (is_string($currblk['padding_right'])) {
+					$currblk['padding_right'] = 0;
+				}
+				if (is_string($currblk['padding_left'])) { 
+					$currblk['padding_left'] = 0; 
+				}
 				$pdr = $currblk['padding_right'];
 				$pdl = $currblk['padding_left'];
 
