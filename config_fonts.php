@@ -293,6 +293,9 @@ $this->fontdata = array(
 		'I' => "ArialItalic.ttf",
 		'BI' => "ArialBoldItalic.ttf"
 	),
+	"opensanslight" => array(
+        'R' => "OpenSansLight.ttf"
+    ), 
 );
 
 
