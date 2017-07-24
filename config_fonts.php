@@ -296,7 +296,7 @@ $this->fontdata = array(
 	"opensanslight" => array(
         'R' => "OpenSansLight.ttf"
     ), 
-	"exo2" => arrat(
+	"exo2" => array(
 		'R' => "Exo2-Regular.ttf",
 		'B' => "Exo2-Bold.ttf"
 	), 
