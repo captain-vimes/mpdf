@@ -300,7 +300,7 @@ $this->fontdata = array(
 		'R' => "Exo2-Regular.ttf",
 		'B' => "Exo2-Bold.ttf"
 	), 
-	"exo2-medium" => arrat(
+	"exo2-medium" => array(
 		'R' => "Exo2-Medium.ttf"
 	)
 );
